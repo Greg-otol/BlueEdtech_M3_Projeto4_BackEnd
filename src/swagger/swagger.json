@@ -1,0 +1,421 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Rick and Morty",
+    "description": "CRUD API for Rick and Morty",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://rickandmorty-otol.herokuapp.com",
+      "description": "Main production"
+    },
+    {
+      "url": "http://localhost:3001",
+      "description": "Internal tests"
+    }
+  ],
+  "paths": {
+    "/users/allusers": {
+      "get": {
+        "summary": "Get all users",
+        "description": "Returns the list of users registered in the database.",
+        "operationId": "getAllUsers",
+        "tags": ["Users"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There are no registered users!"
+          }
+        }
+      }
+    },
+    "/users/create": {
+      "post": {
+        "summary": "Create new user",
+        "description": "Create a new user in the database.",
+        "operationId": "createUser",
+        "tags": ["Users"],
+        "requestBody": {
+          "description": "Data to create the new user.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "name": "Gregório Neto",
+                "username": "greg",
+                "email": "greg@hotmail.com",
+                "password": "admin",
+                "avatar": "imageUrl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Insert all fields to create a new user!"
+          },
+          "406": {
+            "description": "The user already exists!"
+          },
+          "500": {
+            "description": "Error creating user!"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login",
+        "description": "Login to authorize access to API.",
+        "operationId": "login",
+        "tags": ["Auth"],
+        "requestBody": {
+          "description": "email and password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              },
+              "example": {
+                "email": "greg@hotmail.com",
+                "password": "admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found!"
+          },
+          "406": {
+            "description": "Invalid password!"
+          }
+        }
+      }
+    },
+    "/characters": {
+      "get": {
+        "summary": "Get all characters",
+        "description": "Returns all characters registered in the database.",
+        "operationId": "getAllCharacters",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Character"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "There is no character registered!"
+          }
+        }
+      }
+    },
+    "/characters/find/{id}": {
+      "get": {
+        "summary": "Get character by ID",
+        "description": "Returns the character selected by ID.",
+        "operationId": "getCharacterById",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Enter the ID required to search for the character.",
+            "schema": {
+              "type": "string",
+              "example": "62c65cfa13632e7de309ad07"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/characters/search": {
+      "get": {
+        "summary": "Search character by name.",
+        "description": "Returns the character selected by name in the database.",
+        "operationId": "searchCharactersByName",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "Character's Name",
+            "schema": {
+              "type": "string",
+              "example": "Jon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/characters/create": {
+      "post": {
+        "summary": "Create new character",
+        "description": "Create a new character in the database.",
+        "operationId": "createCharacter",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "description": "Data to create the new character.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Character"
+              },
+              "example": {
+                "name": "name",
+                "imageUrl": "imageUrl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Character created successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Enter all the data needed for character creation!"
+          }
+        }
+      }
+    },
+    "/characters/update/{id}": {
+      "put": {
+        "summary": "Update character by ID",
+        "description": "Updates the character selected by ID in the database.",
+        "operationId": "updateCharacter",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Enter the ID required to search for the character.",
+            "schema": {
+              "type": "string",
+              "example": "62c65cfa13632e7de309ad07"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Character data to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Character"
+              },
+              "example": {
+                "name": "name",
+                "imageUrl": "imageUrl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/characters/delete/{id}": {
+      "delete": {
+        "summary": "Delete the character selected by ID",
+        "description": "Delete the character selected by ID in the database.",
+        "operationId": "deleteCharacter",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Enter the ID required to search for the character.",
+            "schema": {
+              "type": "string",
+              "example": "62c65cfa13632e7de309ad07"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Character successfully deleted!"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Character": {
+        "type": "object",
+        "properties": {
+          "user": { "type": "string" },
+          "name": { "type": "string" },
+          "imageUrl": { "type": "string" }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "avatar": { "type": "string" }
+        }
+      }
+    }
+  }
+}
