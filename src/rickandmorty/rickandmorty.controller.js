@@ -53,7 +53,7 @@ const deleteCharacterController = async (req, res) => {
   const chosenCharacter = await characterService.deleteCharacterServices(idParam);
   await characterService.deleteCharacterServices(idParam);
   res.status(200).send({
-    message: `Tarefa '${chosenCharacter.name}' removida com sucesso!`,
+    message: `Personagem '${chosenCharacter.name}' removido com sucesso!`,
   });
 };
 
