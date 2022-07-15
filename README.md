@@ -42,17 +42,17 @@ In this new Rick and Morty project, we have an authentication performed through 
 
 <div style="display: flex;" style="gap: 10;">
 
-<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/javascript.svg" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/javascript.svg" height="120" width="120"/>
 
-<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/nodejs.svg" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/nodejs.svg" height="120" width="120"/>
 
-<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/express.svg" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/express.svg" height="120" width="120"/>
 
-<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/nodemon.svg" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/nodemon.svg" height="120" width="120"/>
 
-<img src="https://addons.mozilla.org/user-media/previews/full/227/227652.png?modified=1622133270" height="100" width="100"/>
+<img src="https://addons.mozilla.org/user-media/previews/full/227/227652.png?modified=1622133270" height="120" width="120"/>
 
-<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/mongodb.svg" height="100" width="100"/>
+<img src="https://raw.githubusercontent.com/tomchen/stack-icons/634d5c036a2a7ca0115c94ab2ce86c7e79e01e13/logos/mongodb.svg" height="120" width="120"/>
 
 </div>
 
