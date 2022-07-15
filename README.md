@@ -4,7 +4,13 @@ Fourth module 3 project
 
 + Back End
 
-Para realizar os testes na API, pode ser usado:
+Project execution:
+
++ npm install (install the dependencies)
+
++ npm run dev (start the application)
+
+To perform the tests on the API, you can use:
 
 + https://rickandmorty-otol.herokuapp.com/api/  (Swagger - cloud test)
 
@@ -17,7 +23,7 @@ Para realizar os testes na API, pode ser usado:
 + Insomnia
 
 
-Projeto desenvolvido com as tecnologias:
+Project developed with the technologies:
 
 + Javascript
 
@@ -31,7 +37,7 @@ Projeto desenvolvido com as tecnologias:
 
 + MongoDB Atlas
 
-Nesse novo projeto do Rick and Morty, temos uma autenticação realizada através do Login do usuário com JWT, onde podemos criar e visualizar os usuários cadastrados e também a criação, atualização, remoção e busca por ID ou nome dos personagens dentro do banco de dados MongoDB Atlas.
+In this new Rick and Morty project, we have an authentication performed through the User Login with JWT, where we can create and view registered users and also create, update, remove and search by ID or character name within the MongoDB database Atlas.
 
 
 <div style="display: flex;" style="gap: 10;">
@@ -51,6 +57,6 @@ Nesse novo projeto do Rick and Morty, temos uma autenticação realizada atravé
 </div>
 
 
-## Contato
+## Contact
 
 <a href="https://www.linkedin.com/in/greg%C3%B3rio-neto-a0119b239/" target="_blank"> <img src="https://img.icons8.com/fluency/144/000000/linkedin.png"/></a>
