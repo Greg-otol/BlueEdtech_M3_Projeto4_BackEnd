@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const CharacterSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-	ref: "User",
+    ref: 'User',
     required: true,
   },
   name: {
@@ -16,6 +16,6 @@ const CharacterSchema = new mongoose.Schema({
   },
 });
 
-const Character = mongoose.model("RickAndMorty", CharacterSchema);
+const Character = mongoose.model('RickAndMorty', CharacterSchema);
 
 module.exports = Character;

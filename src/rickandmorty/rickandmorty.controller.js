@@ -1,4 +1,4 @@
-const characterService = require("./rickandmorty.service");
+const characterService = require('./rickandmorty.service');
 
 const createCharacterController = async (req, res) => {
   try {
@@ -6,16 +6,16 @@ const createCharacterController = async (req, res) => {
     if (!name || !imageUrl) {
       res.status(400).send({
         message:
-          "Inserir todos os dados necessário para a criação do personagem!"
+          'Inserir todos os dados necessário para a criação do personagem!',
       });
     }
     const { id } = await characterService.createCharacterService(
       name,
       imageUrl,
-      req.userId
+      req.userId,
     );
     return res.send({
-      message: "Personagem criado com sucesso!",
+      message: 'Personagem criado com sucesso!',
       character: { id, name, imageUrl },
     });
   } catch (err) {
@@ -26,9 +26,12 @@ const createCharacterController = async (req, res) => {
 const updateCharacterController = async (req, res) => {
   const idParam = req.params.id;
   const characterEdit = req.body;
-  const updatedCharacter = await characterService.updateCharacterServices(idParam, characterEdit);
+  const updatedCharacter = await characterService.updateCharacterServices(
+    idParam,
+    characterEdit,
+  );
   res.send(updatedCharacter);
-}
+};
 
 const findOneCharacterController = async (req, res) => {
   const idParam = req.params.id;
@@ -40,9 +43,11 @@ const findAllCharactersController = async (req, res) => {
   try {
     const characters = await characterService.findAllCharactersService();
     if (characters.length === 0) {
-      return res.status(400).send({ message: "Não existe personagem cadastrado!" });
+      return res
+        .status(400)
+        .send({ message: 'Não existe personagem cadastrado!' });
     }
-    return res.send({results: characters});
+    return res.send({ results: characters });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -50,7 +55,9 @@ const findAllCharactersController = async (req, res) => {
 
 const deleteCharacterController = async (req, res) => {
   const idParam = req.params.id;
-  const chosenCharacter = await characterService.deleteCharacterServices(idParam);
+  const chosenCharacter = await characterService.deleteCharacterServices(
+    idParam,
+  );
   await characterService.deleteCharacterServices(idParam);
   res.status(200).send({
     message: `Personagem '${chosenCharacter.name}' removido com sucesso!`,
@@ -63,9 +70,9 @@ const searchCharacterController = async (req, res) => {
   if (characters.length === 0) {
     return res
       .status(400)
-      .send({ message: "Não existe personagem com esse nome!" });
+      .send({ message: 'Não existe personagem com esse nome!' });
   }
-  return res.send({characters});
+  return res.send({ characters });
 };
 
 module.exports = {
@@ -74,5 +81,5 @@ module.exports = {
   findOneCharacterController,
   updateCharacterController,
   deleteCharacterController,
-  searchCharacterController
+  searchCharacterController,
 };
